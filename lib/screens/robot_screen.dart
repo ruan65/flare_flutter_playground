@@ -1,3 +1,4 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 
 class RobotScreen extends StatelessWidget {
@@ -5,9 +6,10 @@ class RobotScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Container(
-        color: Colors.amber,
-      ),
+      body: FlareActor("animations/dotrot.flr",
+          alignment: Alignment.center,
+          fit: BoxFit.contain,
+          animation: "Loading"),
     );
   }
 }
