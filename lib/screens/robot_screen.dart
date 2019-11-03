@@ -6,10 +6,14 @@ class RobotScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: FlareActor("animations/dotrot.flr",
-          alignment: Alignment.center,
-          fit: BoxFit.contain,
-          animation: "Loading"),
+      body: Container(
+        height: 50,
+        child: FlareActor("animations/dotrot.flr",
+            color: Colors.red,
+            alignment: Alignment.center,
+            fit: BoxFit.contain,
+            animation: "Loading"),
+      ),
     );
   }
 }
