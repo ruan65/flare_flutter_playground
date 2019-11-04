@@ -1,3 +1,4 @@
+import 'package:flare_playground/screens/bottom_slide_scree.dart';
 import 'package:flare_playground/screens/robot_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -27,15 +28,46 @@ class HomePage extends StatelessWidget {
             RaisedButton(
               child: Text('Robot'),
               onPressed: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => RobotScreen()));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => RobotScreen()));
               },
             ),
-            RaisedButton(child: Text('anim2')),
-            RaisedButton(child: Text('anim3')),
+            RaisedButton(
+              child: Text('Bottom Slide Screen'),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => BottomSlideScreen()));
+              },
+            ),
+            RaisedButton(
+              child: Text('from bottom'),
+              onPressed: () {
+                Navigator.of(context).push(_createRoute());
+              },
+            ),
           ],
         ),
       ),
     );
   }
+}
+
+Route _createRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) =>
+        BottomSlideScreen(),
+    transitionDuration: Duration(milliseconds: 1000),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = Offset(0.0, 1.0);
+      var end = Offset.zero;
+      var curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
 }
